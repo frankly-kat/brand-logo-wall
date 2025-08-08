@@ -37,12 +37,19 @@ body {
 }
 
 .logo-wall__item {
+  border: solid 1px navy;
   width: 25%;
   position: relative;
 }
 
 [data-logo-wall-list] [data-logo-wall-item]:nth-child(n + 9) {
   display: none;
+}
+
+@media screen and (max-width: 991px) {
+  [data-logo-wall-list] [data-logo-wall-item]:nth-child(n + 7) {
+    display: none;
+  }
 }
 
 .logo-wall__logo {

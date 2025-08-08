@@ -24,6 +24,31 @@ function initLogoWallCycle() {
     { name: "Össur", logo: "ossur.svg" },
   ];
 
+  const container = document.querySelector("[data-logo-wall-list]");
+
+  const buildBrandList = (brands) => {
+    brands.forEach((brand) => {
+      const brandTemplate = `
+      <div data-logo-wall-item="" class="logo-wall__item">
+        <div data-logo-wall-target-parent="" class="logo-wall__logo">
+          <div class="logo-wall__logo-before"></div>
+          <div data-logo-wall-target="" class="logo-wall__logo-target">
+            <img
+              src=""
+              loading="lazy"
+              width="100"
+              alt=""
+              class="logo-wall__logo-img" />
+          </div>
+        </div>
+      </div>
+    `;
+      container.insertAdjacentHTML("beforeend", brandTemplate);
+    });
+  };
+
+  buildBrandList(brands);
+
   const brandBoxes = [
     ...document.querySelectorAll(
       "[data-logo-wall-target].logo-wall__logo-target"
@@ -52,6 +77,8 @@ function initLogoWallCycle() {
   }
 
   addBrandNames(brands);
+
+  // shuffling logic & animation
 
   const loopDelay = 1.5; // Loop Duration
   const duration = 0.9; // Animation Duration
@@ -195,105 +222,6 @@ function initLogoWallCycle() {
         ease: "expo.inOut",
       });
     }
-
-    //   function setup() {
-    //     if (tl) {
-    //       tl.kill();
-    //     }
-    //     visibleItems = items.filter(isVisible);
-    //     visibleCount = visibleItems.length;
-
-    //     pattern = shuffleArray(Array.from({ length: visibleCount }, (_, i) => i));
-    //     patternIndex = 0;
-
-    //     // remove all injected targets
-    //     items.forEach((item) => {
-    //       item
-    //         .querySelectorAll("[data-logo-wall-target]")
-    //         .forEach((old) => old.remove());
-    //     });
-
-    //     pool = originalTargets.map((n) => n.cloneNode(true));
-
-    //     let front, rest;
-    //     if (shuffleFront) {
-    //       const shuffledAll = shuffleArray(pool);
-    //       front = shuffledAll.slice(0, visibleCount);
-    //       rest = shuffleArray(shuffledAll.slice(visibleCount));
-    //     } else {
-    //       front = pool.slice(0, visibleCount);
-    //       rest = shuffleArray(pool.slice(visibleCount));
-    //     }
-    //     pool = front.concat(rest);
-
-    //     for (let i = 0; i < visibleCount; i++) {
-    //       const parent =
-    //         visibleItems[i].querySelector("[data-logo-wall-target-parent]") ||
-    //         visibleItems[i];
-    //       parent.appendChild(pool.shift());
-    //     }
-
-    //     tl = gsap.timeline({ repeat: -1, repeatDelay: loopDelay });
-    //     tl.call(swapNext);
-    //     tl.play();
-    //   }
-
-    //   const seenLogos = new Set();
-
-    //   function swapNext() {
-    //     const nowCount = items.filter(isVisible).length;
-    //     if (nowCount !== visibleCount) {
-    //       setup();
-    //       return;
-    //     }
-    //     if (!pool.length) return;
-
-    //     const idx = pattern[patternIndex % visibleCount];
-    //     patternIndex++;
-
-    //     const container = visibleItems[idx];
-    //     const parent =
-    //       container.querySelector("[data-logo-wall-target-parent]") ||
-    //       container.querySelector("*:has(> [data-logo-wall-target])") ||
-    //       container;
-    //     const existing = parent.querySelectorAll("[data-logo-wall-target]");
-    //     if (existing.length > 1) return;
-
-    //     // const current = parent.querySelector("[data-logo-wall-target]");
-    //     const incoming = pool.shift();
-
-    //       const current = parent.querySelector("[data-logo-wall-target]");
-    // const currentBrandName = current?.querySelector("img")?.alt;
-
-    // if (currentBrandName) seenLogos.add(currentBrandName);
-    // if (seenLogos.size === brands.length) {
-    //   seenLogos.clear(); // Reset after all have been seen
-    // }
-
-    //     gsap.set(incoming, { yPercent: 50, autoAlpha: 0 });
-    //     parent.appendChild(incoming);
-
-    //     if (current) {
-    //       gsap.to(current, {
-    //         yPercent: -50,
-    //         autoAlpha: 0,
-    //         duration,
-    //         ease: "expo.inOut",
-    //         onComplete: () => {
-    //           current.remove();
-    //           pool.unshift(current);
-    //         },
-    //       });
-    //     }
-
-    //     gsap.to(incoming, {
-    //       yPercent: 0,
-    //       autoAlpha: 1,
-    //       duration,
-    //       delay: 0.1,
-    //       ease: "expo.inOut",
-    //     });
-    //   }
 
     setup();
 
