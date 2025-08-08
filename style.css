@@ -1,0 +1,89 @@
+@font-face {
+  font-family: "vesterbro";
+  src: url(vesterbro.otf);
+}
+
+body {
+  display: grid;
+  place-items: center;
+  height: 100dvh;
+  margin: 0;
+  font-family: "vesterbro";
+  /* background-color: #faf1e8; */
+  /* background-color: #e3f1fd; */
+  background-color: #fff;
+}
+
+.logo-wall {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  /* background-color: #fff; */
+}
+@media screen and (max-width: 50rem) {
+  .logo-wall {
+    width: 100vw;
+  }
+}
+
+.logo-wall__collection {
+  width: 100%;
+}
+
+.logo-wall__list {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.logo-wall__item {
+  width: 25%;
+  position: relative;
+}
+
+[data-logo-wall-list] [data-logo-wall-item]:nth-child(n + 9) {
+  display: none;
+}
+
+.logo-wall__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.logo-wall__logo-before {
+  padding-top: 66.66%;
+}
+
+.logo-wall__logo-target {
+  justify-content: center;
+  align-items: center;
+  width: 66.66%;
+  height: 45%;
+  display: flex;
+  position: absolute;
+  color: #02005a;
+  font-family: "vesterbro";
+  text-align: center;
+  font-size: clamp(1rem, 2.5vw, 4rem);
+
+  font-weight: 500;
+}
+
+.logo-wall__logo-img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 991px) {
+  .logo-wall__item {
+    width: 33.333%;
+  }
+
+  [data-logo-wall-list] [data-logo-wall-item]:nth-child(n + 7) {
+    display: flex;
+  }
+}
